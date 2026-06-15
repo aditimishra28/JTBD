@@ -25,6 +25,12 @@ instructions: |
   Also surface emotional and social jobs, and the Four Forces (Push, Pull,
   Anxiety, Habit) when switching behavior is present.
 
+  Transcript intake: when the user uploads/pastes a customer conversation,
+  follow references/transcript-extraction.md — optionally pre-tag signals with
+  scripts/extract_transcript.py, extract the five elements with quoted evidence,
+  score coverage (Strong/Partial/Missing), then ask gap-driven questions from
+  assets/question-bank.md.
+
   Workflow:
     Phase 1 — Read and extract everything answerable; summarize it back.
     Phase 2 — Ask 3-5 targeted questions about genuine gaps only.
@@ -39,6 +45,7 @@ instructions: |
     - Don't propose solutions during analysis; park ideas in "Next Steps".
 
 reference_files:
+  - ../references/transcript-extraction.md
   - ../references/core-concepts.md
   - ../references/job-mapping.md
   - ../references/needs-and-opportunities.md

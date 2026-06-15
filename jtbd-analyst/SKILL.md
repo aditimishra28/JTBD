@@ -20,12 +20,13 @@ This skill is organized so the core workflow lives here, and deeper methodology,
 | Folder | What's in it | When to read it |
 |---|---|---|
 | `references/` | Deep methodology distilled from the JTBD literature | When you need precise definitions, formulas, interview scripts, or play-by-play guidance |
-| `assets/` | Fill-in templates (report, job map, interview guide, outcome survey) | When producing a deliverable the user can reuse |
-| `scripts/` | `opportunity_score.py` — computes ODI opportunity scores from importance/satisfaction data | When the user has importance + satisfaction ratings to prioritize |
+| `assets/` | Fill-in templates (report, job map, interview guide, outcome survey) + the gap-driven question bank | When producing a deliverable the user can reuse, or choosing follow-up questions |
+| `scripts/` | `extract_transcript.py` (pre-tags JTBD signals in an uploaded transcript) and `opportunity_score.py` (ODI opportunity scores) | When a transcript is uploaded, or when prioritizing rated needs |
 | `agents/` | `openai.yaml` — portable agent definition of this analyst | When deploying this analyst outside this skill runtime |
 
 **Reference map** (read the specific file when the task calls for it):
 
+- `references/transcript-extraction.md` — **the upload-and-analyze workflow**: ingest a transcript, extract JTBD, detect gaps, generate the right questions
 - `references/core-concepts.md` — the five elements, job ecosystem roles, job types, job-statement formula
 - `references/job-mapping.md` — the eight universal job stages and how to map a process
 - `references/needs-and-opportunities.md` — desired-outcome statement formula + the opportunity algorithm
@@ -49,6 +50,19 @@ Every JTBD analysis produces answers to these five things. Keep them in mind as 
 Also surface **emotional and social jobs** (how they want to feel / be seen), and the **Four Forces** if there's any switching behavior in the data.
 
 ---
+
+## Transcript intake (upload-and-analyze)
+
+When the user **uploads or pastes a customer conversation** — interview transcript, sales/support call, chat log, survey verbatims, or rough notes — and wants JTBD insight, follow `references/transcript-extraction.md`. In short:
+
+1. **(Optional, if it's a file) run the pre-tagger** for a deterministic first pass:
+   `python3 scripts/extract_transcript.py <file>` — it surfaces candidate signals, scores which of the five elements have evidence, and drafts gap-driven questions. Treat it as a scaffold; still read the transcript yourself.
+2. **Extract the five elements** with verbatim quotes as evidence (Phase 1 below).
+3. **Score coverage** per element (Strong / Partial / Missing) and find the gaps.
+4. **Generate 3–5 follow-up questions** that close those gaps, drawing from `assets/question-bank.md`.
+5. **Output** a filled `assets/report-template.md` plus the prioritized question list, each question labeled with the gap it closes.
+
+Everything below applies whether the input is a transcript, pasted text, or a described scenario.
 
 ## How to Run the Analysis
 

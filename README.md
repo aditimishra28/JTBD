@@ -6,25 +6,29 @@ A structured Claude skill for **Jobs to Be Done (JTBD)** analysis. Drop in custo
 
 ```
 jtbd-analyst/
-├── SKILL.md                       # Core analyst behavior + workflow (entry point)
-├── references/                    # Distilled, attributed JTBD methodology
-│   ├── core-concepts.md           #   five elements, roles, job types, statement formula
-│   ├── job-mapping.md             #   the 8 universal job stages
-│   ├── needs-and-opportunities.md #   outcome-statement formula + opportunity algorithm
-│   ├── four-forces.md             #   Push / Pull / Anxiety / Habit
-│   ├── interview-guides.md        #   Jobs & Switch interviews, critical-incident technique
-│   ├── plays.md                   #   the play catalog across 5 value stages
-│   └── sources.md                 #   attribution & further reading
-├── assets/                        # Reusable, fill-in templates
-│   ├── report-template.md         #   the JTBD Analysis Report
-│   ├── job-map-template.md        #   job map worksheet
-│   ├── jobs-interview-guide.md    #   discussion guide
-│   └── outcome-survey-template.csv#   importance/satisfaction survey + sample data
-├── scripts/                       # Helper tooling
-│   ├── opportunity_score.py       #   ranks needs by ODI opportunity score
+├── SKILL.md                        # Core analyst behavior + workflow (entry point)
+├── references/                     # Distilled, attributed JTBD methodology
+│   ├── transcript-extraction.md    #   upload-and-analyze: extract JTBD + ask the right questions
+│   ├── core-concepts.md            #   five elements, roles, job types, statement formula
+│   ├── job-mapping.md              #   the 8 universal job stages
+│   ├── needs-and-opportunities.md  #   outcome-statement formula + opportunity algorithm
+│   ├── four-forces.md              #   Push / Pull / Anxiety / Habit
+│   ├── interview-guides.md         #   Jobs & Switch interviews, critical-incident technique
+│   ├── plays.md                    #   the play catalog across 5 value stages
+│   └── sources.md                  #   attribution & further reading
+├── assets/                         # Reusable, fill-in templates
+│   ├── report-template.md          #   the JTBD Analysis Report
+│   ├── job-map-template.md         #   job map worksheet
+│   ├── jobs-interview-guide.md     #   discussion guide
+│   ├── question-bank.md            #   gap-driven follow-up questions
+│   ├── outcome-survey-template.csv #   importance/satisfaction survey + sample data
+│   └── sample-transcript.txt       #   example call to try the extractor on
+├── scripts/                        # Helper tooling
+│   ├── extract_transcript.py       #   pre-tags JTBD signals in a transcript + drafts questions
+│   ├── opportunity_score.py        #   ranks needs by ODI opportunity score
 │   └── README.md
 └── agents/
-    └── openai.yaml                # portable agent definition mirroring SKILL.md
+    └── openai.yaml                 # portable agent definition mirroring SKILL.md
 
 jtbd-analyst.skill                 # packaged, installable skill (zip of jtbd-analyst/)
 ```
@@ -41,6 +45,20 @@ Customers don't buy products — they "hire" them to make progress on a *job*. J
 2. Paste customer data or describe a scenario, or say "run a JTBD analysis."
 3. The analyst extracts what's there, asks a few targeted questions, then produces the report.
 4. Have rating data? Run `scripts/opportunity_score.py` on an importance/satisfaction CSV to prioritize needs.
+
+### ⭐ Upload-and-analyze (transcripts)
+
+Upload or paste a customer conversation — interview, sales/support call, chat log, or survey verbatims — and the analyst will **extract the JTBD and ask the right next questions**:
+
+- Pre-tags the transcript for JTBD signals and scores which of the five elements have evidence (`scripts/extract_transcript.py`).
+- Extracts the job performer, main job, job map, needs, circumstances, and emotional/social jobs — every item cited with a quote.
+- Detects the gaps and generates 3–5 targeted follow-up questions (`assets/question-bank.md`), each labeled with the gap it closes.
+
+Try it on the included sample:
+
+```bash
+python3 jtbd-analyst/scripts/extract_transcript.py jtbd-analyst/assets/sample-transcript.txt
+```
 
 ## 📚 Methodology & attribution
 

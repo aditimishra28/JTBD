@@ -1,0 +1,9 @@
+Interviewer: Thanks for hopping on. Tell me a bit about what you do.
+Customer: Sure. I'm the ops analyst on a 4-person finance team. My job is basically closing the books every month.
+Interviewer: Walk me through how a close goes.
+Customer: First I pull all the transactions from the bank and the ERP. Then I reconcile them in a spreadsheet by hand, which takes forever. After that I flag anything that doesn't match and chase people over email.
+Customer: Honestly the reconciliation part is the most annoying. It takes too long and it's so tedious. Whenever it's end of quarter the volume triples and I'm here till midnight.
+Customer: I just end up copy pasting between Excel and the ERP because the export is a mess. I wish it would just match them automatically.
+Customer: I feel really stressed during close week, and I'm always worried I'll miss something and the numbers will be wrong.
+Interviewer: Have you looked at other tools?
+Customer: We used to do it all in Excel, then we tried one recon tool but it was too rigid so we're kind of stuck with our current setup.
