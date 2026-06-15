@@ -1,0 +1,6 @@
+need_statement,stage,importance,satisfaction
+"Minimize the time it takes to gather documents when preparing taxes",Locate,9.1,4.2
+"Reduce the likelihood of missing a deduction when filing",Execute,8.7,5.0
+"Minimize the effort needed to confirm filing was accepted",Confirm,7.4,6.8
+"Reduce the time it takes to correct an error after filing",Modify,8.0,3.5
+"Minimize the likelihood of an audit when filing",Conclude,9.3,6.1
